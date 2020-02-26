@@ -1,0 +1,103 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        xmlns:viewmodel="clr-namespace:Calculator.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewmodel:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="OperationButton">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Blue" Offset="0" />
+                        <GradientStop Color="LightBlue" Offset="0.5" />
+                        <GradientStop Color="DarkBlue" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="SpecialButton">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Red" Offset="0" />
+                        <GradientStop Color="Pink" Offset="0.5" />
+                        <GradientStop Color="DarkRed" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="ResultButton">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Green" Offset="0" />
+                        <GradientStop Color="LightGreen" Offset="0.5" />
+                        <GradientStop Color="DarkGreen" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Gray" Offset="0" />
+                        <GradientStop Color="LightGray" Offset="0.5" />
+                        <GradientStop Color="DarkGray" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Content="7" Grid.Row="1" Command="{Binding Number}" CommandParameter="7" />
+        <Button Content="8" Grid.Row="1" Grid.Column="1" Command="{Binding Number}" CommandParameter="8" />
+        <Button Content="9" Grid.Row="1" Grid.Column="2" Command="{Binding Number}" CommandParameter="9" />
+        <Button Content="4" Grid.Row="2" Command="{Binding Number}" CommandParameter="4" />
+        <Button Content="5" Grid.Row="2" Grid.Column="1" Command="{Binding Number}" CommandParameter="5" />
+        <Button Content="6" Grid.Row="2" Grid.Column="2" Command="{Binding Number}" CommandParameter="6" />
+        <Button Content="1" Grid.Row="3" Command="{Binding Number}" CommandParameter="1" />
+        <Button Content="2" Grid.Row="3" Grid.Column="1" Command="{Binding Number}" CommandParameter="2" />
+        <Button Content="3" Grid.Row="3" Grid.Column="2" Command="{Binding Number}" CommandParameter="3" />
+        <Button Content="0" Grid.Row="4" Command="{Binding Number}" CommandParameter="0" />
+        <Button Content="." Grid.Row="4" Grid.Column="1" Command="{Binding Point}" />
+        <Button Content="+/-" Grid.Row="4" Grid.Column="2" Command="{Binding Sign}" />
+        <Button Content="+" Grid.Row="1" Grid.Column="3" Command="{Binding Operation}" CommandParameter="+" Style="{StaticResource OperationButton}"/>
+        <Button Content="-" Grid.Row="2" Grid.Column="3" Command="{Binding Operation}" CommandParameter="-" Style="{StaticResource OperationButton}"/>
+        <Button Content="*" Grid.Row="3" Grid.Column="3" Command="{Binding Operation}" CommandParameter="*" Style="{StaticResource OperationButton}"/>
+        <Button Content="/" Grid.Row="4" Grid.Column="3" Command="{Binding Operation}" CommandParameter="/" Style="{StaticResource OperationButton}"/>
+        <Button Content="=" Grid.Row="0" Grid.Column="3" Command="{Binding Result}" Style="{StaticResource ResultButton}"/>
+        <Button Content="Reset" Grid.Row="0" Grid.Column="4" Command="{Binding Reset}" Style="{StaticResource SpecialButton}"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding Value}" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+    </Grid>
+</Window>
